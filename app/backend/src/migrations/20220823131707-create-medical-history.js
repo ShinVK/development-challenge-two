@@ -2,25 +2,21 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('MedicalHistories', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
       diseaseId: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
+        primaryKey: true,
+        references: { model: "Diseases", key: "id"}
       },
       medicalId: {
-        type: Sequelize.NUMBER
-      },
-      createdAt: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
+        primaryKey: true,
+        references: { model: "MedicalProfiles", key: "id"}
       }
     });
   },
