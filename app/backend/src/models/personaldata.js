@@ -9,5 +9,12 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'PersonalData',
   });
+
+  PersonalData.associate = (models) => {
+    PersonalData.belongsTo(models.User, {
+      foreignKey: 'userId',
+      as: 'user',
+    });
+  };
   return PersonalData;
 };

@@ -6,5 +6,11 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'MedicalProfile',
   });
+  MedicalData.associate = (models) => {
+    MedicalData.belongsTo(models.User, {
+      foreignKey: 'userId',
+      as: 'user',
+    });
+  };
   return MedicalData;
 };

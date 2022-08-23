@@ -1,24 +1,26 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class MedicalHistory extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
-  };
-  MedicalHistory.init({
-    diseaseId: DataTypes.NUMBER,
-    medicalId: DataTypes.NUMBER
+  const MedicalHistory = sequelize.define('MedicalHistory', {
+    diseaseId: DataTypes.INTEGER,
+    medicalId: DataTypes.INTEGER,
   }, {
-    sequelize,
-    modelName: 'MedicalHistory',
+    timestamps: false,
   });
+
+  MedicalHistory.associate = (models) => {
+    models.MedicalData.belongsToMany(models.Disease, {
+      foreignKey: 'medicalId',
+      otherKey: 'diseaseId',
+      as: 'diseases',
+      through: MedicalHistory,
+    });
+
+    models.Disease.belongsToMany(models.MedicalData, {
+      foreignKey: 'diseaseId',
+      otherKey: 'medicalId',
+      as: 'medical',
+      through: MedicalHistory,
+    });
+  };
+
   return MedicalHistory;
 };
