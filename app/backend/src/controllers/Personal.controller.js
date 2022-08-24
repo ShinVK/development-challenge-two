@@ -25,6 +25,17 @@ class UserController {
     }
   }
 
+  async getOne(req, res, next) {
+    const { id } = req.params;
+    try {
+      const user = await this.service.getOne(id);
+      return res.status(200).json(user);
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
+
   // async update(req, res, next) {
   //   const { id } = req.params;
   //   const { oldPassword, newPassword } = req.body;

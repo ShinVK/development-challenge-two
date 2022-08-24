@@ -28,14 +28,21 @@ class PersonalService {
     return { newUser };
   }
 
-  async getOne(id) {
-    const verifyUser = await this.model.findOne({ where: { userId: id } }, {
+  async getOne(userId) {
+    const verifyUser = await this.model.findOne({ where: { userId } });
+
+    if (!verifyUser) throw Err('User not found', 404);
+
+    const { id } = verifyUser;
+    const userDetailed = await this.model.findByPk(id, {
       include: [
-        { model: User, as: 'userId', attributes: ['id', 'login', 'access'] },
+        { model: User,
+          as: 'user',
+          attributes: ['id', 'login', 'access'] },
       ],
     });
-    if (!verifyUser) throw Err('User not found', 404);
-    return verifyUser;
+    
+    return userDetailed;
   }
 
   // async update(oldPassword, password, id) {
