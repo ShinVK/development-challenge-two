@@ -14,4 +14,10 @@ personalRouter.post('/:id', validateTokenUser, validateBodyPersonal,
 personalRouter.get('/:id',
   (req, res, next) => personalController.getOne(req, res, next));
 
+personalRouter.put('/:id', validateTokenUser, validateBodyPersonal,
+  (req, res, next) => personalController.update(req, res, next));
+
+personalRouter.delete('/:id', validateTokenUser,
+  (req, res, next) => personalController.delete(req, res, next));
+
 module.exports = personalRouter;

@@ -36,6 +36,31 @@ class UserController {
     }
   }
 
+  async update(req, res, next) {
+    const { id } = req.params;
+    const informations = req.body;
+    try {
+      const updatedPersonal = await this.service.update(id, informations);
+
+      return res.status(200).json(updatedPersonal);
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
+
+  async delete(req, res, next) {
+    const { id } = req.params;
+    try {
+      await this.service.delete(id);
+
+      return res.status(204);
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
+
   // async update(req, res, next) {
   //   const { id } = req.params;
   //   const { oldPassword, newPassword } = req.body;

@@ -28,6 +28,18 @@ class PersonalService {
     return { newUser };
   }
 
+  async update(id, informations) {
+    await this.model.update(informations, { where: {
+      userId: id,
+    } });
+    const updatedPersonal = await this.model.findOne({
+      where: { userId: id },
+    });
+
+    if (!updatedPersonal) throw Err('user not found', 404);
+    return updatedPersonal;
+  }
+
   async getOne(userId) {
     const verifyUser = await this.model.findOne({ where: { userId } });
 
@@ -43,6 +55,14 @@ class PersonalService {
     });
     
     return userDetailed;
+  }
+
+  async delete(userId) {
+    const verifyUser = await this.model.findOne({ where: { userId } });
+
+    if (!verifyUser) throw Err('User not found', 404);
+    const { id } = verifyUser;
+    await this.model.destroy({ where: { id } });
   }
 
   // async update(oldPassword, password, id) {

@@ -49,8 +49,8 @@ class UserService {
     }
 
     const hashNewPass = md5(password);
-    const userNewPass = await this.model.findByPk(id);
     await this.model.update({ password: hashNewPass }, { where: { id } });
+    const userNewPass = await this.model.findByPk(id);
     return userNewPass;
   }
 
