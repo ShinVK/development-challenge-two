@@ -1,4 +1,4 @@
-const LoginService = require('../services/login.service');
+const LoginService = require('../services/Login.service');
 
 const loginService = new LoginService();
 
@@ -7,7 +7,7 @@ class LoginController {
     this.service = service;
   }
 
-  postlogin = async (req, res, next) => {
+  async postlogin(req, res, next) {
     const { login, password } = req.body;
     try {
       const result = await this.service.login(login, password);
@@ -16,7 +16,7 @@ class LoginController {
       }
       return res.status(201).json(result);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       next(err);
     }
   }

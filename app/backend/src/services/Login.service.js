@@ -12,8 +12,8 @@ class LoginService {
   }
 
   async login(login, password) {
-    const user = await User.findOne({ where: { login } });
-
+    const user = await this.model.findOne({ where: { login } });
+    console.log(user);
     if (!user) {
       throw err('Could not found a user with this login', 404);
     }
@@ -36,7 +36,8 @@ class LoginService {
     return { user: { 
       login: user.login,
       access: user.access,
-    }, token };
+    },
+token };
   }
 }
 
