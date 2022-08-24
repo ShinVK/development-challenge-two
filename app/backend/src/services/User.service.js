@@ -34,7 +34,25 @@ class UserService {
     });
 
     return { user: { ...newUser.dataValues }, token };
-  } 
+  }
+
+  async update(oldPassword, password, id) {
+    const user = await this.model.findByPk(id);
+
+    const hashOldPass = md5(oldPassword);
+    if (user.password !== hashOldPass) {
+      throw Err('Wrong password', 400);
+    }
+  
+    if (!user) {
+      throw Err('Could not found a user with this ID', 404);
+    }
+
+    const hashNewPass = md5(password);
+    const userNewPass = await this.model.findByPk(id);
+    await this.model.update({ password: hashNewPass }, { where: { id } });
+    return userNewPass;
+  }
 }
 
 module.exports = UserService;

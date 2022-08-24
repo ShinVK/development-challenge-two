@@ -18,6 +18,19 @@ class UserController {
       next(err);
     }
   }
+
+  async update(req, res, next) {
+    const { id } = req.params;
+    const { oldPassword, newPassword } = req.body;
+    console.log(req.body);
+    try {
+      const userNewPass = await this.service.update(oldPassword, newPassword, id);
+      return res.status(200).json({ userNewPass });
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
 }
 
 module.exports = UserController;
