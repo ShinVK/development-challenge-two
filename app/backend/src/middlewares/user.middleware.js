@@ -35,6 +35,7 @@ class ValidateUser {
       throw err('token not found', 401);
     }
     const decoded = jwt.verify(this.token, TOKENSECRET);
+    // console.log(decoded.sub !== this.id);
     if (this.id !== decoded.sub) {
       throw err('you are not authorized', 401);
     }

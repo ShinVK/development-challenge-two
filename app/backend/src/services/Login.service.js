@@ -33,7 +33,8 @@ class LoginService {
 
     const decoded = verify(token, TOKENSECRET);
     console.log(decoded);
-    return { user: { 
+    return { user: {
+      id: user.id,
       login: user.login,
       access: user.access,
     },

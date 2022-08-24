@@ -19,7 +19,7 @@ class UserService {
 
     const hashedPassword = md5(password);
 
-    const newUser = await User.create({
+    const newUser = await this.model.create({
       login,
       password: hashedPassword,
       access: 'customer',
@@ -62,7 +62,7 @@ class UserService {
   }
 
   async getAll() {
-    const users = await this.model.findAll();
+    const users = await this.model.findAll({ attributes: ['id', 'login', 'access'] });
     return users;
   }
 }
