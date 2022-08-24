@@ -1,6 +1,0 @@
-RDS_HOSTNAME=database-2.cscf0s1czjvv.sa-east-1.rds.amazonaws.com
-RDS_USERNAME=admin
-RDS_PASSWORD=root123456
-RDS_PORT=3306
-PORT=3000
-RDS_DATABASE=medcloud
