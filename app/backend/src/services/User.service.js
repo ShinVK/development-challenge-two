@@ -53,6 +53,18 @@ class UserService {
     await this.model.update({ password: hashNewPass }, { where: { id } });
     return userNewPass;
   }
+
+  async delete(id) {
+    const user = await this.model.findByPk(id);
+    if (!user) throw Err('User not found', 404);
+
+    await this.model.destroy({ where: { id } });
+  }
+
+  async getAll() {
+    const users = await this.model.findAll();
+    return users;
+  }
 }
 
 module.exports = UserService;

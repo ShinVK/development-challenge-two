@@ -56,6 +56,11 @@ const validateBodyUser = (req, _res, next) => {
 const validateTokenUser = (req, _res, next) => {
   const validateUser = new ValidateUser(req);
   validateUser.authAuthentication();
+  next();
+};
+
+const validatePassUser = (req, _res, next) => {
+  const validateUser = new ValidateUser(req);
   validateUser.updatePass();
   next();
 };
@@ -63,4 +68,5 @@ const validateTokenUser = (req, _res, next) => {
 module.exports = {
   validateBodyUser,
   validateTokenUser,
+  validatePassUser,
 };
