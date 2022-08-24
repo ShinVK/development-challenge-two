@@ -1,6 +1,6 @@
 require('dotenv').config();
 const md5 = require('md5');
-const { sign } = require('jsonwebtoken');
+const { sign, verify } = require('jsonwebtoken');
 const { User } = require('../database/models');
 const err = require('../utils/errorbase');
 
@@ -31,6 +31,8 @@ class LoginService {
       expiresIn: '1d',
     });
 
+    const decoded = verify(token, TOKENSECRET);
+    console.log(decoded);
     return { user: { 
       login: user.login,
       access: user.access,
