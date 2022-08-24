@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'MedicalProfile',
+    tableName: 'medicalProfiles'
   });
   
   MedicalData.associate = (models) => {

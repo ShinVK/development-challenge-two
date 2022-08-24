@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'PersonalData',
+    tableName: 'personalData'
   });
 
   PersonalData.associate = (models) => {

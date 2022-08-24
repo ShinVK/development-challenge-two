@@ -4,17 +4,18 @@ module.exports = (sequelize, DataTypes) => {
     medicalId: DataTypes.INTEGER,
   }, {
     timestamps: false,
+    tableName: 'medicalHistories'
   });
 
   MedicalHistory.associate = (models) => {
-    models.MedicalData.belongsToMany(models.Disease, {
+    models.MedicalProfile.belongsToMany(models.Disease, {
       foreignKey: 'medicalId',
       otherKey: 'diseaseId',
       as: 'diseases',
       through: MedicalHistory,
     });
 
-    models.Disease.belongsToMany(models.MedicalData, {
+    models.Disease.belongsToMany(models.MedicalProfile, {
       foreignKey: 'diseaseId',
       otherKey: 'medicalId',
       as: 'medical',
