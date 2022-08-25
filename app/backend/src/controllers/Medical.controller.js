@@ -1,6 +1,6 @@
 const PersonalService = require('../services/Personal.service');
 
-class PersonalController {
+class MedicalController {
   constructor(service = new PersonalService()) {
     this.service = service;
   }
@@ -23,6 +23,7 @@ class PersonalController {
       }
       return res.status(201).json(user);
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }
@@ -33,6 +34,7 @@ class PersonalController {
       const user = await this.service.getOne(id);
       return res.status(200).json(user);
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }
@@ -45,6 +47,7 @@ class PersonalController {
 
       return res.status(200).json(updatedPersonal);
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }
@@ -56,9 +59,10 @@ class PersonalController {
 
       return res.status(204);
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }
 }
 
-module.exports = PersonalController;
+module.exports = MedicalController;

@@ -11,8 +11,6 @@ const userController = new UserController();
 
 const registerRouter = Router();
 
-registerRouter.get('/', (req, res, next) => userController.getAll(req, res, next));
-
 registerRouter.post('/',
   validateBodyUser, (req, res, next) => userController.create(req, res, next));
 

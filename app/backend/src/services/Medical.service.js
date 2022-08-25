@@ -1,37 +1,31 @@
-require('dotenv').config();
-
-const { PersonalData, User } = require('../database/models');
+const { MedicalProfile, User } = require('../database/models');
 const Err = require('../utils/errorbase');
 
-class PersonalService {
-  constructor(model = PersonalData) {
+class MedicalService {
+  constructor(model = MedicalProfile) {
     this.model = model;
   }
 
   async getAll() {
-    const personalData = await this.model.findAll({
+    const medicalProfile = await this.model.findAll({
       include: [
         { model: User,
           as: 'user',
           attributes: ['id', 'login', 'access'] },
       ] });
-    return personalData;
+    return medicalProfile;
   }
 
-  async create(id, { firstName, lastName, email,
-    birthDate, city, state }) {
+  async create(id, { weight, height, observations }) {
     const verifyUser = await this.model.findOne({ where: { userId: id } });
     if (verifyUser) {
-      throw Err('This user already registered', 409);
+      throw Err('This medical data already registered', 409);
     }
 
     const newUser = await this.model.create({
-      firstName,
-      lastName,
-      email,
-      birthDate,
-      city,
-      state,
+      weight,
+      height,
+      observations,
       userId: Number(id),
     });
 
@@ -76,4 +70,4 @@ class PersonalService {
   }
 }
 
-module.exports = PersonalService;
+module.exports = MedicalService;

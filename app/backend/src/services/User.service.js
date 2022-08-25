@@ -39,19 +39,29 @@ class UserService {
   async update(oldPassword, password, id) {
     const user = await this.model.findByPk(id);
 
+    if (!user) {
+      throw Err('Could not found a user with this ID', 404);
+    }
+
     const hashOldPass = md5(oldPassword);
     if (user.password !== hashOldPass) {
       throw Err('Wrong password', 400);
     }
   
-    if (!user) {
-      throw Err('Could not found a user with this ID', 404);
-    }
-
     const hashNewPass = md5(password);
     await this.model.update({ password: hashNewPass }, { where: { id } });
     const userNewPass = await this.model.findByPk(id);
     return userNewPass;
+  }
+
+  async updateAccess(id, access) {
+    const user = await this.model.findByPk(id);
+    if (!user) {
+      throw Err('Could not found a user with this ID', 404);
+    }
+    await this.model.update({ access }, { where: { id } });
+    const userNewRole = await this.model.findByPk(id);
+    return userNewRole;
   }
 
   async delete(id) {

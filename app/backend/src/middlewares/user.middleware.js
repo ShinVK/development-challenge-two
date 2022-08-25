@@ -31,13 +31,16 @@ class ValidateUser {
   }
 
   authAuthentication() {
-    if (!this.token) {
-      throw err('token not found', 401);
-    }
-    const decoded = jwt.verify(this.token, TOKENSECRET);
-    // console.log(decoded.sub !== this.id);
-    if (this.id !== decoded.sub) {
-      throw err('you are not authorized', 401);
+    try {
+      if (!this.token) {
+        throw err('token not found', 401);
+      }
+      const decoded = jwt.verify(this.token, TOKENSECRET);
+      if (this.id !== decoded.sub) {
+        throw err('you are not authorized', 401);
+      }
+    } catch (e) {
+      throw err('Invalid Token', 401);
     }
   }
 

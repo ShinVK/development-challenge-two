@@ -27,12 +27,22 @@ class UserController {
   async update(req, res, next) {
     const { id } = req.params;
     const { oldPassword, newPassword } = req.body;
-    console.log(req.body);
     try {
       const userNewPass = await this.service.update(oldPassword, newPassword, id);
-      return res.status(200).json({ userNewPass });
+      return res.status(200).json(userNewPass);
     } catch (err) {
       console.log(err);
+      next(err);
+    }
+  }
+
+  async updateAccess(req, res, next) {
+    const { id } = req.params;
+    const { access } = req.body;
+    try {
+      const userNewAccess = await this.service.updateAccess(id, access);
+      return res.status(200).json(userNewAccess);
+    } catch (err) {
       next(err);
     }
   }

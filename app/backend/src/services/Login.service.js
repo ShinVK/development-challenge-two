@@ -1,4 +1,3 @@
-require('dotenv').config();
 const md5 = require('md5');
 const { sign, verify } = require('jsonwebtoken');
 const { User } = require('../database/models');
