@@ -1,10 +1,12 @@
 const { Router } = require('express');
 const UserController = require('../controllers/User.controller');
 const PersonalController = require('../controllers/Personal.controller');
+const MedicalController = require('../controllers/Medical.controller');
 const { validateTokenAdmin, validateAccess } = require('../middlewares/admin.middleware');
 
 const userController = new UserController();
 const personalController = new PersonalController();
+const medicalcontroller = new MedicalController();
 const adminRouter = Router();
 
 // Admin vai poder atualizar o access do user, deletar o user, deletar o personal e deletar o medical
@@ -23,5 +25,11 @@ adminRouter.get('/personal', validateTokenAdmin,
 
 adminRouter.delete('/personal/:id', validateTokenAdmin,
   (req, res, next) => personalController.delete(req, res, next));
+
+adminRouter.get('/medical', validateTokenAdmin,
+  (req, res, next) => medicalcontroller.getAll(req, res, next));
+
+adminRouter.delete('/medical/:id', validateTokenAdmin,
+  (req, res, next) => medicalcontroller.delete(req, res, next));
 
 module.exports = adminRouter;
