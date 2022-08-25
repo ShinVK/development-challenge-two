@@ -7,12 +7,7 @@ class MedicalService {
   }
 
   async getAll() {
-    const medicalProfile = await this.model.findAll({
-      include: [
-        { model: User,
-          as: 'user',
-          attributes: ['id', 'login', 'access'] },
-      ] });
+    const medicalProfile = await this.model.findAll();
     return medicalProfile;
   }
 

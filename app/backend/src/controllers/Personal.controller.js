@@ -14,6 +14,11 @@ class PersonalController {
     }
   }
 
+  async getAllUsers(req, res, _next) {
+    const users = await this.service.getAllUsers();
+    return res.status(200).json(users);
+  }
+
   async create(req, res, next) {
     const { id } = req.params;
     try {

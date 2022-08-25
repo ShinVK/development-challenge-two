@@ -18,6 +18,13 @@ class PersonalService {
     return personalData;
   }
 
+  async getAllUsers() {
+    const personalData = await this.model.findAll({
+      exclude: ['createdAt', 'updatedAt'], 
+    });
+    return personalData;
+  }
+
   async create(id, { firstName, lastName, email,
     birthDate, city, state }) {
     const verifyUser = await this.model.findOne({ where: { userId: id } });

@@ -1,7 +1,7 @@
-const PersonalService = require('../services/Personal.service');
+const MedicalService = require('../services/Medical.service');
 
 class MedicalController {
-  constructor(service = new PersonalService()) {
+  constructor(service = new MedicalService()) {
     this.service = service;
   }
 

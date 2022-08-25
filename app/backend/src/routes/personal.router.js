@@ -3,6 +3,9 @@ const { Router } = require('express');
 const { validateTokenUser } = require('../middlewares/user.middleware');
 const { validateBodyPersonal } = require('../middlewares/personal.middleware');
 const PersonalController = require('../controllers/Personal.controller');
+const MedicalController = require('../controllers/Medical.controller');
+
+const medicalController = new MedicalController();
 
 const personalController = new PersonalController();
 
@@ -19,5 +22,8 @@ personalRouter.put('/:id', validateTokenUser, validateBodyPersonal,
 
 personalRouter.delete('/:id', validateTokenUser,
   (req, res, next) => personalController.delete(req, res, next));
+
+personalRouter.get('/medical/:id', validateTokenUser,
+  (req, res, next) => medicalController.getOne(req, res, next));
 
 module.exports = personalRouter;
