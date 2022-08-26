@@ -2,10 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
-// import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-// import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -55,21 +53,28 @@ export default function PermanentDrawerLeftAdmin() {
             <ListItemButton
               onClick={() => history.push('/admin/table/users')}
             >
-              <ListItemText primary='Mostrar usuários' />
+              <ListItemText primary='Mostrar dados físicos' />
             </ListItemButton>
           </ListItem>
           <ListItem>
             <ListItemButton
               onClick={() => history.push('/admin/update/user')}
             >
-              <ListItemText primary='Atualizar acesso' />
+              <ListItemText primary='Atualizar dados físicos' />
             </ListItemButton>
           </ListItem>
           <ListItem>
             <ListItemButton
                 onClick={() => history.push('/admin/delete/user')}
               >
-              <ListItemText primary='Deletar Usuário' />
+              <ListItemText primary='Deletar dados físicos' />
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton
+                onClick={() => history.push('/admin/delete/user')}
+              >
+              <ListItemText primary='Cadastrar dados físicos' />
             </ListItemButton>
           </ListItem>
         </List>

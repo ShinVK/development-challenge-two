@@ -1,4 +1,4 @@
-import { Container, Paper, Typography } from '@mui/material';
+import { Container, Paper } from '@mui/material';
 import React from 'react'
 import HeaderAppBar from '../components/Appbar';
 import Bio from '../components/Bio';
@@ -13,7 +13,6 @@ function ProfileAdmin() {
 
   return (
     <>
-     
       <>
         <HeaderAppBar />
         <PermanentDrawerLeft />

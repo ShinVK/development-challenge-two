@@ -31,7 +31,7 @@ export default function Homepage() {
                 component="img"
                 sx={{
                   height: 250,
-                  pt: 5,
+                  mt: 15,
                 }}
                 src={ MedcloudLogo }
               />
