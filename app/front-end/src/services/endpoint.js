@@ -1,3 +1,3 @@
-const ENDPOINT = 'http://localhost:3001'
+const ENDPOINT = 'http://54.94.1.161:3001'
 
 export default ENDPOINT;
