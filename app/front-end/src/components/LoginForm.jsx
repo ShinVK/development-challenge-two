@@ -15,7 +15,8 @@ export default function LoginForm() {
   const {
     setToken,
     setId,
-    setAccessUser
+    setAccessUser,
+    setIsLogged,
   } = useContext(Context);
 
   // para redirecionar
@@ -49,7 +50,7 @@ export default function LoginForm() {
   const onClickLogin = async () => {
     // requisição PostLogin ------
     const data = await Postlogin({ login: loginUser, password })
-    console.log(data.response.data.message)
+    console.log(data)
     if (!data.user) {
       const { response: { data: { message }}} = data;
       setMsg(message);
@@ -59,6 +60,7 @@ export default function LoginForm() {
     setToken(token);
     setAccessUser(access);
     setId(id);
+    setIsLogged(true);
 
     if (access === 'administrator') return history.push('/admin');
     if (access === 'customer') return history.push('/customer');

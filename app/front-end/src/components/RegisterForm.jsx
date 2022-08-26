@@ -18,7 +18,8 @@ export default function RegisterForm() {
   const {
     setToken,
     setId,
-    setAccessUser
+    setAccessUser,
+    setIsLogged,
   } = useContext(Context);
 
   // para redirecionar
@@ -72,7 +73,7 @@ export default function RegisterForm() {
     setToken(token);
     setAccessUser(access);
     setId(id);
-
+    setIsLogged(true);
     return history.push('/register');
   }
 

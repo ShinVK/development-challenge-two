@@ -4,7 +4,7 @@ import ENDPOINT from './endpoint';
 async function getAllUsersAdmin(token) {
   try {
     const url = `${ENDPOINT}/admin/user`;
-    const resp = await axios.delete(url, {
+    const resp = await axios.get(url, {
       headers: {
         authorization: token,
       }

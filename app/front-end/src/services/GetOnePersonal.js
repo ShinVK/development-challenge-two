@@ -1,10 +1,10 @@
 import axios from 'axios';
 import ENDPOINT from './endpoint';
 
-async function getOneMedical(token, id, role) {
+async function getOnePersonal(token, id, role) {
   try {
-    const url = `${ENDPOINT}/${role}/user/${id}`;
-    const resp = await axios.delete(url, {
+    const url = `${ENDPOINT}/personal/${id}`;
+    const resp = await axios.get(url, {
       headers: {
         authorization: token,
       }
@@ -17,4 +17,4 @@ async function getOneMedical(token, id, role) {
   }
 }
 
-export default getOneMedical;
+export default getOnePersonal;

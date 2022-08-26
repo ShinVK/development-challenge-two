@@ -4,7 +4,7 @@ import ENDPOINT from './endpoint';
 async function getAllPersonalData(token) {
   try {
     const url = `${ENDPOINT}/personal`;
-    const resp = await axios.delete(url, {
+    const resp = await axios.get(url, {
       headers: {
         authorization: token,
       }

@@ -1,5 +1,8 @@
-import { Typography } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import React, { useState, useContext, useEffect } from 'react'
+import HeaderAppBar from '../components/Appbar';
+import PermanentDrawerLeft from '../components/Drawer';
+import TableAdmin from '../components/TableAdmin';
 import Context from '../context/Context';
 
 function Admin() {
@@ -23,7 +26,13 @@ function Admin() {
           Desculpe, você não pode acessa essa página
         </Typography>  
       :
-      <div>Admin</div>
+      <>
+        <HeaderAppBar />
+        <PermanentDrawerLeft />
+        <Container maxWidth="lg" sx={ {ml: 35, mt: 10}}>
+          <TableAdmin />
+        </Container>
+      </>
     }
     </>
   )

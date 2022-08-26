@@ -4,7 +4,7 @@ import ENDPOINT from './endpoint';
 async function getAllMedicalData(token) {
   try {
     const url = `${ENDPOINT}/medical/all`;
-    const resp = await axios.delete(url, {
+    const resp = await axios.get(url, {
       headers: {
         authorization: token,
       }
