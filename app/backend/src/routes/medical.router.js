@@ -24,4 +24,7 @@ medicalRouter.delete('/:id', validateMedicalToken,
 medicalRouter.get('/customers', validateMedicalToken,
   (req, res, next) => personalController.getAllUsers(req, res, next));
 
+medicalRouter.get('/all', validateMedicalToken,
+  (req, res, next) => medicalController.getAll(req, res, next));
+
 module.exports = medicalRouter;
