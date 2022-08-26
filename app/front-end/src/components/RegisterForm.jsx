@@ -1,8 +1,8 @@
 import { Button, Grid, Paper, TextField, Typography } from '@mui/material';
 import React, { useState, useEffect, useContext } from 'react';
-import Postlogin from '../services/PostLogin';
 import Context from '../context/Context';
 import { useHistory } from 'react-router-dom';
+import createUser from '../services/CreateUser';
 
 export default function RegisterForm() {
   const [loginUser, setLoginUser] = useState('');
@@ -11,6 +11,8 @@ export default function RegisterForm() {
 
   const [disabled, setdisabled] = useState(true)
   const [errorMsg, seterrorMsg] = useState(false)
+  // mensagem de erro de acordo com a resposta do backend
+  const [msg, setMsg] = useState('Falha no registro');
 
   // provider state
   const {
@@ -59,18 +61,19 @@ export default function RegisterForm() {
 
   const onClickLogin = async () => {
     // requisição PostLogin ------
-    const data = await Postlogin({ login: loginUser, password })
-    if (!data.user) seterrorMsg(true);
+    const data = await createUser({ login: loginUser, password })
+    if (!data.user) {
+      const { response: { data: { message }}} = data;
+      setMsg(message);
+      return seterrorMsg(true)
+    };
+    console.log(data);
     const { user: { access, id }, token } = data;
     setToken(token);
     setAccessUser(access);
     setId(id);
 
-    if (access === 'administrator') return history.push('/admin');
-    if (access === 'customer') return history.push('/customer');
-    if (access === 'medcloud') return history.push('/medcloud');
-
-
+    return history.push('/register');
   }
 
   return (
@@ -122,7 +125,7 @@ export default function RegisterForm() {
             </Grid>
             { errorMsg && 
                 <Typography sx={{ color: 'red', textAlign: 'center', mt: 3,}}>
-                  Login Inválido
+                  { msg }
                 </Typography>
               }
           </Grid>

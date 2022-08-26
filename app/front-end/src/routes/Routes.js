@@ -5,7 +5,6 @@ import Login from '../pages/Login';
 import Customer from '../pages/Customer';
 import Medical from '../pages/Medical';
 import Admin from '../pages/Admin';
-import Register from '../pages/Register';
 import RegisterPersonal from '../pages/RegisterPersonal';
 import RegisterHealth from '../pages/RegisterHealth';
 
@@ -17,8 +16,7 @@ export default function Routes() {
       <Route exact path="/admin" component={ Admin } />
       <Route exact path="/customer" component={ Customer } />
       <Route exact path="/medcloud" component={ Medical } />
-      <Route exact path="/register" component={ Register } />
-      <Route exact path="/register/personal" component={ RegisterPersonal } />
+      <Route exact path="/register" component={ RegisterPersonal } />
       <Route exact path="/register/health" component={ RegisterHealth } />
     </Switch>
   )
