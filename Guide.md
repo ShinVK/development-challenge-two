@@ -66,4 +66,4 @@
 
   ### Imagens da tela
 
-  ![screen] (/assets/homepage.png);
+  ![screen] (assets/homepage.png);
