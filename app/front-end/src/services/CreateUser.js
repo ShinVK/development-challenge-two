@@ -1,9 +1,9 @@
 import axios from 'axios';
 import ENDPOINT from './endpoint';
 
-async function postlogin(loginValues) {
+async function createUser(loginValues) {
   try {
-    const url = `${ENDPOINT}/login`;
+    const url = `${ENDPOINT}/register`;
     const resp = await axios.post(url, loginValues);
     const { data } = resp;
     return data
@@ -13,4 +13,4 @@ async function postlogin(loginValues) {
   }
 }
 
-export default postlogin;
+export default createUser;
