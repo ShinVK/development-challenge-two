@@ -119,7 +119,7 @@ export default function RegisterForm() {
                 variant="outlined"
                 onClick={ onClickLogin }
               >
-                Entrar
+                Próximo passo
               </Button>
          
             </Grid>

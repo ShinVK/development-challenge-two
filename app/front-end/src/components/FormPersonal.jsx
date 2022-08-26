@@ -2,7 +2,7 @@ import { Button, Grid, Paper, TextField, Typography } from '@mui/material';
 import React, { useState, useEffect, useContext } from 'react';
 import Context from '../context/Context';
 import { useHistory } from 'react-router-dom';
-import createUser from '../services/CreateUser';
+import createPersonalData from '../services/CreatePersonal';
 
 export default function FormPersonal() {
   // formulário de cadastro
@@ -13,16 +13,14 @@ export default function FormPersonal() {
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
 
-
-
-  const [disabled, setdisabled] = useState(true)
   const [errorMsg, seterrorMsg] = useState(false)
   // mensagem de erro de acordo com a resposta do backend
   const [msg, setMsg] = useState('Falha no registro');
 
   // provider state
   const {
-    id
+    id,
+    token,
   } = useContext(Context);
 
   // para redirecionar
@@ -34,20 +32,25 @@ export default function FormPersonal() {
   }, [])
 
 
-  // const onClickLogin = async () => {
-  //   // requisição PostLogin ------
-  //   const data = await createUser({ login: loginUser, password })
-  //   if (!data.user) {
-  //     const { response: { data: { message }}} = data;
-  //     setMsg(message);
-  //     return seterrorMsg(true)
-  //   };
-  //   console.log(data);
-  //   const { user: { access, id }, token } = data;
-
-
-  //   return history.push('/register');
-  // }
+  const onClick = async () => {
+    // requisição PostMedical ------
+    const registerForm = {
+      firstName,
+      lastName,
+      email,
+      birthDate,
+      city,
+      state,
+    }
+    const data = await createPersonalData(token, id, registerForm)
+    console.log(data);
+    if (!data.newUser) {
+      const { response: { data: { message }}} = data;
+      setMsg(message);
+      return seterrorMsg(true)
+    };
+    return history.push('/login');
+  }
 
   return (
     <Paper sx={{ width: '90%', mt: 5, p: 5, mb: 5}}>
@@ -118,7 +121,7 @@ export default function FormPersonal() {
               variant="outlined"
               value={ state }
               onChange={ ({target: { value}}) => setState(value) }
-              placeholder='País'
+              placeholder='Estado'
             />
           </Grid>
 
@@ -126,7 +129,7 @@ export default function FormPersonal() {
             <Grid item xs={ 12 } sx={{ display: 'flex', justifyContent: 'center', mt: 3}}>
               <Button
                 variant="outlined"
-                // onClick={ onClickLogin }
+                onClick={ onClick }
               >
                 Cadastrar
               </Button>

@@ -6,18 +6,17 @@ import FormPersonal from '../components/FormPersonal';
 export default function RegisterPersonal() {
   return (
     <>
-       <HeaderAppBar />
-
-       <Container maxWidth="xl" sx={ {mt: 5}}>
+      <HeaderAppBar />
+      <Container maxWidth="xl" sx={ {mt: 5}}>
         <Paper sx={{ backgroundColor: '#f0feff' }}>
-        <Typography
-          component="div"
-          sx={{
-            pt: 2,
-            ml: 5,
-            fontSize: '2rem'
-          }}
-        >
+          <Typography
+            component="div"
+            sx={{
+              pt: 2,
+              ml: 5,
+              fontSize: '2rem'
+            }}
+          >
             Agora só falta algumas informações
           </Typography>
           <Grid container justifyContent='center' alignContent="center">
