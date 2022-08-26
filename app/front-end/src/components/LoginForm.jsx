@@ -50,7 +50,7 @@ export default function LoginForm() {
   const onClickLogin = async () => {
     // requisição PostLogin ------
     const data = await Postlogin({ login: loginUser, password })
-    console.log(data)
+
     if (!data.user) {
       const { response: { data: { message }}} = data;
       setMsg(message);

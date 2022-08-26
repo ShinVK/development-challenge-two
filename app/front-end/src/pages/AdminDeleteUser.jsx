@@ -1,8 +1,8 @@
 import { Container, Typography } from '@mui/material';
 import React, { useState, useContext, useEffect } from 'react'
 import HeaderAppBar from '../components/Appbar';
+import DeleteUserAdmin from '../components/DeleteUser';
 import PermanentDrawerLeft from '../components/Drawer';
-import TableAdmin from '../components/TableAdmin';
 import Context from '../context/Context';
 
 function AdminDeleteUser() {
@@ -30,7 +30,7 @@ function AdminDeleteUser() {
         <HeaderAppBar />
         <PermanentDrawerLeft />
         <Container maxWidth="lg" sx={ {ml: 35, mt: 10}}>
-          <TableAdmin />
+          <DeleteUserAdmin />
         </Container>
       </>
     }

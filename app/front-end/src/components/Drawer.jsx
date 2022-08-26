@@ -59,13 +59,25 @@ export default function PermanentDrawerLeftAdmin() {
         </List>
         <Divider />
         <List>
-          {['Bio', 'logout'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemText primary={text} />
+        
+            <ListItem disablePadding>
+              <ListItemButton
+                onClick={ () => history.push('/admin/profile')}
+              >
+                <ListItemText primary='Profile' />
               </ListItemButton>
             </ListItem>
-          ))}
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemText primary='Atualizar cadastro' />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemText primary='Logout' />
+              </ListItemButton>
+            </ListItem>
+   
         </List>
       </Drawer>
       <Box

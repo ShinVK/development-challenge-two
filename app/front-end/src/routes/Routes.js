@@ -10,6 +10,7 @@ import RegisterHealth from '../pages/RegisterHealth';
 import AdminTableUser from '../pages/AdminTableUser';
 import AdminUpdateUser from '../pages/AdminUpdateUser';
 import AdminDeleteUser from '../pages/AdminDeleteUser';
+import ProfileAdmin from '../pages/ProfileAdmin';
 
 export default function Routes() {
   return (
@@ -20,6 +21,7 @@ export default function Routes() {
       <Route exact path="/admin/table/users" component={ AdminTableUser } />
       <Route exact path="/admin/update/user" component={ AdminUpdateUser } />
       <Route exact path="/admin/delete/user" component={ AdminDeleteUser } />
+      <Route exact path="/admin/profile" component={ ProfileAdmin } />
       <Route exact path="/customer" component={ Customer } />
       <Route exact path="/medcloud" component={ Medical } />
       <Route exact path="/register" component={ RegisterPersonal } />
