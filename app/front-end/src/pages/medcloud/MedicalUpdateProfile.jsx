@@ -1,21 +1,20 @@
-import { Container, Typography } from '@mui/material';
+import { Container, Paper, Typography } from '@mui/material';
 import React, { useState, useContext, useEffect } from 'react'
-import HeaderAppBar from '../components/Appbar';
-import PermanentDrawerLeft from '../components/Drawer';
-import UpdateAccess from '../components/UpdateAccess';
-import Context from '../context/Context';
+import HeaderAppBar from '../../components/Appbar';
+import DrawerMedCloud from '../../components/DrawerMedCloud';
+import UpdateProf from '../../components/UpdateProfile';
+import Context from '../../context/Context';
 
-function AdminUpdateUser() {
+
+export default function MedicalUpdateProfile() {
   const {
     accessUser
   } = useContext(Context)
 
   const [authorized, setAuthorized] = useState(false);
 
-
-
   useEffect(() => {
-    if (accessUser !== 'administrator')
+    if (accessUser !== 'medcloud')
     setAuthorized(true);
   }, [accessUser])
   
@@ -28,15 +27,15 @@ function AdminUpdateUser() {
         </Typography>  
       :
       <>
-        <HeaderAppBar />
-        <PermanentDrawerLeft />
+      <HeaderAppBar />
+        <DrawerMedCloud />
         <Container maxWidth="lg" sx={ {ml: 35, mt: 10}}>
-          <UpdateAccess />
+          <Paper>
+            <UpdateProf />
+          </Paper>
         </Container>
       </>
     }
     </>
   )
 }
-
-export default AdminUpdateUser

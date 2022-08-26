@@ -13,7 +13,7 @@ import Context from '../context/Context';
 
 const drawerWidth = 240;
 
-export default function PermanentDrawerLeftAdmin() {
+export default function DrawerMedCloud() {
   const history = useHistory();
   const {
     setToken,
@@ -51,28 +51,28 @@ export default function PermanentDrawerLeftAdmin() {
         <List sx={{ pt: 15}}>
           <ListItem>
             <ListItemButton
-              onClick={() => history.push('/admin/table/users')}
+              onClick={() => history.push('/medcloud/table/users')}
             >
               <ListItemText primary='Mostrar dados físicos' />
             </ListItemButton>
           </ListItem>
           <ListItem>
             <ListItemButton
-              onClick={() => history.push('/admin/update/user')}
+              onClick={() => history.push('/medcloud/update/user')}
             >
               <ListItemText primary='Atualizar dados físicos' />
             </ListItemButton>
           </ListItem>
           <ListItem>
             <ListItemButton
-                onClick={() => history.push('/admin/delete/user')}
+                onClick={() => history.push('/medcloud/delete/user')}
               >
               <ListItemText primary='Deletar dados físicos' />
             </ListItemButton>
           </ListItem>
           <ListItem>
             <ListItemButton
-                onClick={() => history.push('/admin/delete/user')}
+                onClick={() => history.push('/medcloud/post/user')}
               >
               <ListItemText primary='Cadastrar dados físicos' />
             </ListItemButton>
@@ -83,14 +83,14 @@ export default function PermanentDrawerLeftAdmin() {
         
             <ListItem disablePadding>
               <ListItemButton
-                onClick={ () => history.push('/admin/profile')}
+                onClick={ () => history.push('/medcloud/profile')}
               >
                 <ListItemText primary='Profile' />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
               <ListItemButton
-                onClick={ () => history.push('/admin/update/profile')}
+                onClick={ () => history.push('/medcloud/update/profile')}
               >
                 <ListItemText primary='Atualizar cadastro' />
               </ListItemButton>

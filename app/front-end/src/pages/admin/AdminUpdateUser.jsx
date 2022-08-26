@@ -1,18 +1,19 @@
 import { Container, Typography } from '@mui/material';
 import React, { useState, useContext, useEffect } from 'react'
-import HeaderAppBar from '../components/Appbar';
-import PermanentDrawerLeft from '../components/Drawer';
-import TableAdmin from '../components/TableAdmin';
-import Context from '../context/Context';
+import HeaderAppBar from '../../components/Appbar';
+import PermanentDrawerLeft from '../../components/Drawer';
+import UpdateAccess from '../../components/UpdateAccess';
+import Context from '../../context/Context';
 
-function AdminTableUser() {
+function AdminUpdateUser() {
   const {
     accessUser
   } = useContext(Context)
 
   const [authorized, setAuthorized] = useState(false);
 
-  console.log(accessUser)
+
+
   useEffect(() => {
     if (accessUser !== 'administrator')
     setAuthorized(true);
@@ -30,7 +31,7 @@ function AdminTableUser() {
         <HeaderAppBar />
         <PermanentDrawerLeft />
         <Container maxWidth="lg" sx={ {ml: 35, mt: 10}}>
-          <TableAdmin />
+          <UpdateAccess />
         </Container>
       </>
     }
@@ -38,4 +39,4 @@ function AdminTableUser() {
   )
 }
 
-export default AdminTableUser
+export default AdminUpdateUser

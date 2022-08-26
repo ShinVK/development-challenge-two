@@ -5,6 +5,8 @@ import Context from './Context';
 export default function Provider({ children }) {
   const [token, setToken] = useState('');
   const [id, setId] = useState('');
+  const [idEdit, setIdEdit] = useState('');
+
   const [accessUser, setAccessUser] = useState('');
   const [isLogged, setIsLogged] = useState(false);
 
@@ -14,6 +16,8 @@ export default function Provider({ children }) {
     id,
     accessUser,
     isLogged,
+    idEdit,
+    setIdEdit,
     setIsLogged,
     setId,
     setAccessUser,

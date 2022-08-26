@@ -1,8 +1,8 @@
 import { Container, Paper } from '@mui/material';
 import React from 'react'
-import HeaderAppBar from '../components/Appbar';
-import Bio from '../components/Bio';
-import PermanentDrawerLeft from '../components/Drawer';
+import HeaderAppBar from '../../components/Appbar';
+import Bio from '../../components/Bio';
+import PermanentDrawerLeft from '../../components/Drawer';
 // import Context from '../context/Context';
 
 function ProfileAdmin() {

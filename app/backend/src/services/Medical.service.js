@@ -7,7 +7,12 @@ class MedicalService {
   }
 
   async getAll() {
-    const medicalProfile = await this.model.findAll();
+    const medicalProfile = await this.model.findAll({
+      include: [
+        { model: User,
+          as: 'user',
+          attributes: ['id', 'login'] },
+      ] });
     return medicalProfile;
   }
 
@@ -41,7 +46,7 @@ class MedicalService {
 
   async getOne(userId) {
     const verifyUser = await this.model.findOne({ where: { userId } });
-    
+
     if (!verifyUser) throw Err('User not found', 404);
 
     const { id } = verifyUser;

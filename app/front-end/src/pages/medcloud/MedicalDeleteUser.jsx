@@ -1,10 +1,12 @@
 import { Container, Paper, Typography } from '@mui/material';
 import React, { useState, useContext, useEffect } from 'react'
-import HeaderAppBar from '../components/Appbar';
-import PermanentDrawerLeft from '../components/Drawer';
-import Context from '../context/Context';
+import HeaderAppBar from '../../components/Appbar';
+import DeleteMedicalUser from '../../components/DeleteMedicalUser';
+import DrawerMedCloud from '../../components/DrawerMedCloud';
+import Context from '../../context/Context';
 
-function Admin() {
+
+export default function MedicalDeleteUser() {
   const {
     accessUser
   } = useContext(Context)
@@ -13,7 +15,7 @@ function Admin() {
 
   console.log(accessUser)
   useEffect(() => {
-    if (accessUser !== 'administrator')
+    if (accessUser !== 'medcloud')
     setAuthorized(true);
   }, [accessUser])
   
@@ -26,13 +28,11 @@ function Admin() {
         </Typography>  
       :
       <>
-        <HeaderAppBar />
-        <PermanentDrawerLeft />
+      <HeaderAppBar />
+        <DrawerMedCloud />
         <Container maxWidth="lg" sx={ {ml: 35, mt: 10}}>
           <Paper>
-            <Typography sx={{ p: 15, fontSize: '2rem'}}>
-              Selecione uma opção ao lado
-            </Typography>
+            <DeleteMedicalUser />
           </Paper>
         </Container>
       </>
@@ -40,5 +40,3 @@ function Admin() {
     </>
   )
 }
-
-export default Admin
