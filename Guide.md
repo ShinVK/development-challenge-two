@@ -47,12 +47,12 @@
    
     personalData
    | id | firstName | lastName | email | brithDate | city | state | userId |
-   |---|---|---|---|
+   |---|---|---|---|---|---|---|---|
    | 1 | Victor | Kamiguchi | email@email.com | 1994-01-01 | Londrina | Paraná | 1|
 
    medicalData
    | id | weight | height | observations | userId |
-   |---|---|---|---|
+   |---|---|---|---|---|
    | 1 | 80 | 170 | hipertenso, sobrebeso | 1|
 
 
