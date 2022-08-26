@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Homepage from '../pages/Homepage';
 import Login from '../pages/Login';
-import Customer from '../pages/Customer';
+import Customer from '../pages/customer/Customer';
 import Medical from '../pages/medcloud/Medical';
 import Admin from '../pages/admin/Admin';
 import RegisterPersonal from '../pages/RegisterPersonal';
@@ -19,6 +19,10 @@ import MedicalTableUsers from '../pages/medcloud/MedicalTableUsers';
 import MedicalProfile from '../pages/medcloud/MedicalProfile';
 import MedicalFormUpdate from '../pages/medcloud/MedicalFormUpdate';
 import MedicalPostUserForm from '../pages/medcloud/MedicalCreateUserForm';
+import UpdatePassword from '../pages/UserUpdatePassword';
+import CustomerProfile from '../pages/customer/CustomerProfile';
+import CustomerUpdateProfile from '../pages/customer/CustomerUpdateProfile';
+import CustomerMedicalData from '../pages/customer/CustomerMedicalData';
 
 export default function Routes() {
   return (
@@ -26,6 +30,8 @@ export default function Routes() {
       <Route exact path="/" component={ Homepage }/>
       <Route exact path="/login" component={ Login } />
       <Route exact path="/register" component={ RegisterPersonal } />
+      <Route exact path="/user/update/password" component={ UpdatePassword } />
+
 
       {/* admin */}
       <Route exact path="/admin" component={ Admin } />
@@ -36,6 +42,11 @@ export default function Routes() {
       <Route exact path="/admin/update/profile" component={ AdminUpdateProfile} />
 
       <Route exact path="/customer" component={ Customer } />
+      <Route exact path="/personal/profile" component={ CustomerProfile} />
+      <Route exact path="/personal/update/profile" component={ CustomerUpdateProfile } />
+      <Route exact path="/personal/user/medical" component={ CustomerMedicalData } />
+
+
 
       {/* medcloud */}
       <Route exact path="/medcloud" component={ Medical } />

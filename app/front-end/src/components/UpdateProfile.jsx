@@ -25,6 +25,7 @@ export default function UpdateProf() {
     async function fetchOnePersonal() {
       const data = await getOnePersonal(token, id);
       const { firstName, lastName, email, birthDate, city, state } = data;
+      console.log(data)
       setfirstNameEdit(firstName);
       setlastNameEdit(lastName);
       setbirthDateEdit(birthDate);

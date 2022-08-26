@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import MedcloudLogo from '../assets/imgs/logo-medcloud-4.webp';
 import Context from '../context/Context';
+import { useHistory } from 'react-router-dom';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -20,7 +21,7 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const HeaderAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const history = useHistory();
   const {
     isLogged
   } = React.useContext(Context);
@@ -134,7 +135,7 @@ const HeaderAppBar = () => {
               </div>
             
           :
-          <Button variant="contained">Entrar</Button>
+          <Button variant="contained" onClick={ () => history.push('/login')}>Entrar</Button>
           }
           </Box>
         </Toolbar>

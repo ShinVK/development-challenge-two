@@ -2,10 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
-// import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-// import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -15,7 +13,7 @@ import Context from '../context/Context';
 
 const drawerWidth = 240;
 
-export default function PermanentDrawerLeftAdmin() {
+export default function DrawerCustomer() {
   const history = useHistory();
   const { setToken, setIsLogged, setId, setAccessUser } =
     React.useContext(Context);
@@ -48,31 +46,25 @@ export default function PermanentDrawerLeftAdmin() {
         <Divider />
         <List sx={{ pt: 15 }}>
           <ListItem>
-            <ListItemButton onClick={() => history.push('/admin/table/users')}>
-              <ListItemText primary='Mostrar usuários' />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton onClick={() => history.push('/admin/update/user')}>
-              <ListItemText primary='Atualizar acesso' />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton onClick={() => history.push('/admin/delete/user')}>
-              <ListItemText primary='Deletar Usuário' />
+            <ListItemButton
+              onClick={() => history.push('/personal/user/medical')}
+            >
+              <ListItemText primary='Mostrar meus dados médicos' />
             </ListItemButton>
           </ListItem>
         </List>
         <Divider />
         <List>
           <ListItem disablePadding>
-            <ListItemButton onClick={() => history.push('/admin/profile')}>
+            <ListItemButton onClick={() => history.push('/personal/profile')}>
               <ListItemText primary='Profile' />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton
-              onClick={() => history.push('/admin/update/profile')}
+              onClick={() => history.push(
+                '/personal/update/profile'
+              )}
             >
               <ListItemText primary='Atualizar dados pessoais' />
             </ListItemButton>

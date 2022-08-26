@@ -15,20 +15,16 @@ const drawerWidth = 240;
 
 export default function DrawerMedCloud() {
   const history = useHistory();
-  const {
-    setToken,
-    setIsLogged,
-    setId,
-    setAccessUser,
-  } = React.useContext(Context);
+  const { setToken, setIsLogged, setId, setAccessUser } =
+    React.useContext(Context);
 
   const onClicklogOut = () => {
     setIsLogged(false);
     setId('');
     setToken('');
     setAccessUser('');
-    return history.push('/')
-  }
+    return history.push('/');
+  };
 
   return (
     <Box sx={{ display: 'flex', zIndex: 1 }}>
@@ -43,12 +39,12 @@ export default function DrawerMedCloud() {
             boxSizing: 'border-box',
           },
         }}
-        variant="permanent"
-        anchor="left"
+        variant='permanent'
+        anchor='left'
       >
         <Toolbar />
         <Divider />
-        <List sx={{ pt: 15}}>
+        <List sx={{ pt: 15 }}>
           <ListItem>
             <ListItemButton
               onClick={() => history.push('/medcloud/table/users')}
@@ -65,52 +61,49 @@ export default function DrawerMedCloud() {
           </ListItem>
           <ListItem>
             <ListItemButton
-                onClick={() => history.push('/medcloud/delete/user')}
-              >
+              onClick={() => history.push('/medcloud/delete/user')}
+            >
               <ListItemText primary='Deletar dados físicos' />
             </ListItemButton>
           </ListItem>
           <ListItem>
-            <ListItemButton
-                onClick={() => history.push('/medcloud/post/user')}
-              >
+            <ListItemButton onClick={() => history.push('/medcloud/post/user')}>
               <ListItemText primary='Cadastrar dados físicos' />
             </ListItemButton>
           </ListItem>
         </List>
         <Divider />
         <List>
-        
-            <ListItem disablePadding>
-              <ListItemButton
-                onClick={ () => history.push('/medcloud/profile')}
-              >
-                <ListItemText primary='Profile' />
-              </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemButton
-                onClick={ () => history.push('/medcloud/update/profile')}
-              >
-                <ListItemText primary='Atualizar cadastro' />
-              </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemButton
-                onClick={onClicklogOut}
-              >
-                <ListItemText primary='Logout' />
-              </ListItemButton>
-            </ListItem>
-   
+          <ListItem disablePadding>
+            <ListItemButton onClick={() => history.push('/medcloud/profile')}>
+              <ListItemText primary='Profile' />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton
+              onClick={() => history.push('/medcloud/update/profile')}
+            >
+              <ListItemText primary='Atualizar dados pessoais' />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton
+              onClick={() => history.push('/user/update/password')}
+            >
+              <ListItemText primary='Atualizar senha' />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton onClick={onClicklogOut}>
+              <ListItemText primary='Logout' />
+            </ListItemButton>
+          </ListItem>
         </List>
       </Drawer>
       <Box
-        component="main"
+        component='main'
         sx={{ flexGrow: 0, bgcolor: 'background.default', p: 3 }}
-      >
-    
-      </Box>
+      ></Box>
     </Box>
   );
 }
