@@ -1,15 +1,34 @@
-import { Button, Grid, Paper, TextField } from '@mui/material';
-import React, { useState } from 'react';
+import { Button, Grid, Paper, TextField, Typography } from '@mui/material';
+import React, { useState, useEffect, useContext } from 'react';
 import Postlogin from '../services/PostLogin';
+import Context from '../context/Context';
+import { useHistory } from 'react-router-dom';
 
 export default function LoginForm() {
-  const [login, setLogin] = useState('');
+  const [loginUser, setLoginUser] = useState('');
   const [password, setPassword] = useState('');
-  const [disabled, setdisabled] = useState(true)
+  const [disabled, setdisabled] = useState(true);
+  const [errorMsg, seterrorMsg] = useState(false);
+  const [msg, setMsg] = useState('Login Inválido');
+
+  // provider state
+  const {
+    setToken,
+    setId,
+    setAccessUser
+  } = useContext(Context);
+
+  // para redirecionar
+  const history = useHistory();
+
+  // resetar msg para false toda vez
+  useEffect(() => {
+    seterrorMsg(false);
+  }, [])
 
   const handleLogin = ({ target }) => {
     const { value } = target;
-    setLogin(value);
+    setLoginUser(value);
     if (value.length > 0 && password.length > 0) {
       setdisabled(false)
     } else {
@@ -20,7 +39,7 @@ export default function LoginForm() {
   const handlePassword = ({ target }) => {
     const { value } = target;
     setPassword(value);
-    if (value.length > 0 && login.length > 0) {
+    if (value.length > 0 && loginUser.length > 0) {
       setdisabled(false)
     } else {
       setdisabled(true)
@@ -29,19 +48,37 @@ export default function LoginForm() {
 
   const onClickLogin = async () => {
     // requisição PostLogin ------
-    const data = await Postlogin({login, password})
-    console.log(data);
+    const data = await Postlogin({ login: loginUser, password })
+    console.log(data.response.data.message)
+    if (!data.user) {
+      const { response: { data: { message }}} = data;
+      setMsg(message);
+      return seterrorMsg(true);
+    }
+    const { user: { access, id }, token } = data;
+    setToken(token);
+    setAccessUser(access);
+    setId(id);
+
+    if (access === 'administrator') return history.push('/admin');
+    if (access === 'customer') return history.push('/customer');
+    if (access === 'medcloud') return history.push('/medcloud');
+
+
   }
 
   return (
-    <Paper sx={{ width: '40%', mt: 20, p: 5}}>
+    <Paper sx={{ width: '90%', mt: 5, p: 5, ml: 5, mr: 5, mb: 10}}>
        <form>
         <Grid container spacing={{ xs: 2, md: 3}} sx={{ mr: 15}}>
+        <Typography>
+            Faça seu login:
+          </Typography>
           <Grid item xs={ 12 }>
             <TextField
               type="text"
               variant="outlined"
-              value={ login }
+              value={ loginUser }
               onChange={ handleLogin }
               placeholder='login'
             />
@@ -65,9 +102,14 @@ export default function LoginForm() {
               >
                 Entrar
               </Button>
+         
             </Grid>
+            { errorMsg && 
+                <Typography sx={{ color: 'red', textAlign: 'center', mt: 3,}}>
+                  { msg }
+                </Typography>
+              }
           </Grid>
-
         </Grid>
       </form>
 
