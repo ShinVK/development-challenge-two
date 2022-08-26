@@ -39,9 +39,7 @@
    | id | login | password | access |
    |---|---|---|---|
    | 1 | admin | adminMedCloud | administrator |
-   |---|---|---|---|
    | 2 | doutor1 | doutorMedCloud | medcloud |
-   |---|---|---|---|
    | 3 | cliente1 | clienteMedCloud | customer |
 
    
