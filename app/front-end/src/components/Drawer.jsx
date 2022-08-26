@@ -9,14 +9,13 @@ import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import { useHistory } from 'react-router-dom';
 
 const drawerWidth = 240;
 
 export default function PermanentDrawerLeftAdmin() {
+  const history = useHistory();
   return (
     <Box sx={{ display: 'flex', zIndex: 1 }}>
       <CssBaseline />
@@ -36,13 +35,27 @@ export default function PermanentDrawerLeftAdmin() {
         <Toolbar />
         <Divider />
         <List sx={{ pt: 15}}>
-          {['Mostrar usuários', 'Atualizar acesso', 'Deletar Usuário'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          <ListItem>
+            <ListItemButton
+              onClick={() => history.push('/admin/table/users')}
+            >
+              <ListItemText primary='Mostrar usuários' />
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton
+              onClick={() => history.push('/admin/update/user')}
+            >
+              <ListItemText primary='Atualizar acesso' />
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton
+                onClick={() => history.push('/admin/delete/user')}
+              >
+              <ListItemText primary='Deletar Usuário' />
+            </ListItemButton>
+          </ListItem>
         </List>
         <Divider />
         <List>
